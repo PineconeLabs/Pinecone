@@ -35,6 +35,8 @@ pinecone:
 	mv $(TARGET_LIB) $(OUTPUTDIR)
 	cp src/pinecone.h $(OUTPUTDIR)
 
+	rm -f $(SRCDIR)/*.o
+
 # Clean target to remove object files and library
 clean:
 	@echo "Cleaning up..."
