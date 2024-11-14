@@ -63,4 +63,3 @@ void networkFree(NeuralNetwork* net);
 double sigmoid(double input);
 Matrix* matrixSigmoidPrime(Matrix* m);
 Matrix* matrixSoftmax(Matrix* m);
-
