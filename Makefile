@@ -1,9 +1,9 @@
 # Compiler and flags
 CC = gcc
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -Wextra -g
 SRCDIR = src
 TARGET = libpinecone
-
+INCLUDESPATH = -I../include/ # put a .. infront of the actual include path because in hte compiling process it goes into the src/ directory
 # Default to static
 LIBTYPE = static
 
@@ -27,14 +27,21 @@ all: pinecone
 # Rule to compile source files and create the static library
 pinecone:
 	@echo "Compiling source files..."
+<<<<<<< HEAD
 	cd $(SRCDIR) && $(CC) $(CFLAGS) -c $(SRCS_NO_PREFIX)
+=======
+	cd $(SRCDIR) && $(CC) $(CFLAGS) -c $(SRCS_NO_PREFIX) $(INCLUDESPATH)
+>>>>>>> ea28608 (Update Pinecone to Version 0.1.0! Docs releasing soon)
 	ar rcs $(TARGET_LIB) $(OBJS_NO_PREFIX)
 
 	mkdir -p $(OUTPUTDIR)
 
 	mv $(TARGET_LIB) $(OUTPUTDIR)
 	cp src/pinecone.h $(OUTPUTDIR)
+<<<<<<< HEAD
 
+=======
+>>>>>>> ea28608 (Update Pinecone to Version 0.1.0! Docs releasing soon)
 	rm -f $(SRCDIR)/*.o
 
 # Clean target to remove object files and library

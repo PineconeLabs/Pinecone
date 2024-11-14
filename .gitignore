@@ -1,6 +1,12 @@
 # Builds
 build/
 
+oldsrc/
+models/
+mnist-models/
+data/
+examples/data/
+
 # Prerequisites
 *.d
 

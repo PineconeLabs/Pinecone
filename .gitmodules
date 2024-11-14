@@ -1,0 +1,5 @@
+[submodule "include/libMT199937"]
+	path = include/libMT199937
+	url = https://github.com/SusgUY446/libMT199937
+[submodule "stb"]
+	sparseCheckout = true
