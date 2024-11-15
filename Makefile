@@ -22,7 +22,7 @@ TARGET_LIB = $(TARGET).a
 
 # Default target
 all: pinecone
-.PHONY: all clean
+.PHONY: all pinecone clean
 
 # Rule to compile source files and create the static library
 pinecone:

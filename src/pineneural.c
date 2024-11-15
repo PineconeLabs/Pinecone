@@ -81,18 +81,50 @@ void networkTrain(NeuralNetwork* net, Matrix* input, Matrix* output) {
     matrixFree(hiddenErrors);
 }
 
+#include <stdio.h>
+
+// Your original function with progress bar addition
+#include <stdio.h>
+#include <stdio.h>
+#include <stdio.h>
+
+#include <stdio.h>
+
 void networkTrainBatchImgs(NeuralNetwork* net, Img** imgs, int batchSize) {
+    int lastPercentage = -1;
+
     for (int i = 0; i < batchSize; i++) {
-        if (i % 100 == 0) printf("Img No. %d\n", i);
+        int percentage = (i * 100) / batchSize;
+
+        if (percentage != lastPercentage || i == batchSize - 1) {
+            printf("\r%-50s\rTraining progress: %d%% - Processing image %d of %d",
+                   "", percentage, i + 1, batchSize);
+            fflush(stdout);
+            lastPercentage = percentage;
+        } else {
+            printf("\r%-50s\rTraining progress: %d%% - Processing image %d of %d",
+                   "", percentage, i + 1, batchSize);
+            fflush(stdout);
+        }
+
         Img* curImg = imgs[i];
-        Matrix* imgData = matrixFlatten(curImg->imgData, 0); // 0 = flatten to column vector
+        Matrix* imgData = matrixFlatten(curImg->imgData, 0);
         Matrix* output = matrixCreate(10, 1);
-        output->entries[curImg->label][0] = 1; // Setting the result
+        output->entries[curImg->label][0] = 1;  
+
         networkTrain(net, imgData, output);
+
+        // Free memory
         matrixFree(output);
         matrixFree(imgData);
     }
+
+    printf("\r%-50s\rTraining progress: 100%% - Processed all %d images\n", "", batchSize);
+    fflush(stdout);
 }
+
+
+
 
 Matrix* networkPredictImg(NeuralNetwork* net, Img* img) {
     Matrix* imgData = matrixFlatten(img->imgData, 0);
